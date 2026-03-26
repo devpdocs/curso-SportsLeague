@@ -1,5 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-
 using SportsLeague.DataAccess.Context;
 
 using SportsLeague.DataAccess.Repositories;
@@ -10,13 +8,16 @@ using SportsLeague.Domain.Interfaces.Services;
 
 using SportsLeague.Domain.Services;
 
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // ── Entity Framework Core ──
 
 builder.Services.AddDbContext<LeagueDbContext>(options =>
 
-options.UseSqlServer(
+options.UseSqlite(
 
 builder.Configuration.GetConnectionString("DefaultConnection")));
 
