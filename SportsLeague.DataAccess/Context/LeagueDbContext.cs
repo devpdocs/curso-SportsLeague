@@ -227,6 +227,8 @@ public class LeagueDbContext : DbContext
 
         });
 
+        // CREATE TABLE Sponsor {....}
+
         // -- sponsor configuration --
         modelBuilder.Entity<Sponsor>(entity =>
         {

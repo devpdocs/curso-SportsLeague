@@ -83,7 +83,7 @@ public class SponsorService : ISponsorService
 
             throw new InvalidOperationException(
 
-            $"Ya existe un equipo con el nombre '{sponsor.Name}'");
+            $"Ya existe un Sponsor con el nombre '{sponsor.Name}'");
 
         }
 
@@ -107,7 +107,7 @@ public class SponsorService : ISponsorService
 
             throw new KeyNotFoundException(
 
-            $"No se encontró el equipo con ID {id}");
+            $"No se encontró el sponsor con ID {id}");
 
         }
 
@@ -125,7 +125,7 @@ public class SponsorService : ISponsorService
 
                 throw new InvalidOperationException(
 
-                $"Ya existe un equipo con el nombre '{sponsor.Name}'");
+                $"Ya existe un sponsor con el nombre '{sponsor.Name}'");
 
             }
 
@@ -161,7 +161,7 @@ public class SponsorService : ISponsorService
 
             throw new KeyNotFoundException(
 
-            $"No se encontró el equipo con ID {id}");
+            $"No se encontró el sponsor con ID {id}");
 
         }
 
