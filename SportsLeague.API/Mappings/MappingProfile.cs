@@ -15,6 +15,12 @@ public class MappingProfile : Profile
     public MappingProfile()
 
     {
+        // TournamentSponsor mappings
+
+        CreateMap<TournamentSponsor, TournamentSponsorResponseDTO>();
+
+        CreateMap<TournamentSponsorRequestDTO, TournamentSponsor>();
+
         // Sponsor mappings
         CreateMap<SponsorRequestDTO, Sponsor>();
 

@@ -173,4 +173,75 @@ public class SponsorController : ControllerBase
 
     }
 
+    [HttpPost("{id}/tournaments")]
+
+    public async Task<ActionResult> AddTournament(int id, TournamentSponsorRequestDTO dto)
+
+    {
+        try
+
+        {
+
+            await _sponsorService.AddTournamentSponsorAsync(id, dto.TournamentId, dto.ContractAmount);
+
+            return Ok(new { message = "Sponsor vinculado al torneo correctamente" });
+        }
+
+        catch (KeyNotFoundException ex) 
+
+        { 
+
+            return NotFound(new { message = ex.Message }); 
+        }
+
+        catch (InvalidOperationException ex) { 
+
+            return Conflict(new { message = ex.Message }); 
+        }
+    }
+
+    [HttpGet("{id}/tournaments")]
+
+    public async Task<ActionResult> GetTournaments(int id)
+    {
+        try
+
+        {
+
+            var tournaments = await _sponsorService.GetTournamentsBySponsorAsync(id);
+
+            var response = _mapper.Map<IEnumerable<TournamentResponseDTO>>(tournaments);
+
+            return Ok(response);
+        }
+
+        catch (KeyNotFoundException ex)
+
+        {
+            return NotFound(new { message = ex.Message });
+        }
+    }
+
+    [HttpDelete("{id}/tournaments/{tournamentId}")]
+
+    public async Task<ActionResult> RemoveTournament(int id, int tournamentId)
+
+    {
+        try
+
+        {
+            await _sponsorService.RemoveTournamentSponsorAsync(id, tournamentId);
+
+            return NoContent();
+        }
+        
+        catch (KeyNotFoundException ex)
+
+        {
+
+            return NotFound(new { message = ex.Message });
+
+        }
+    }
+
 }

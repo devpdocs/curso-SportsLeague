@@ -16,4 +16,10 @@ public interface ISponsorService
 
     Task DeleteAsync(int id);
 
+    Task AddTournamentSponsorAsync(int sponsorId, int tournamentId, decimal contractAmount);
+
+    Task<IEnumerable<Tournament>> GetTournamentsBySponsorAsync(int sponsorId);
+
+    Task RemoveTournamentSponsorAsync(int sponsorId, int tournamentId);
+
 }
