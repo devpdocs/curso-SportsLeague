@@ -25,6 +25,11 @@ public class LeagueDbContext : DbContext
 
     public DbSet<TournamentTeam> TournamentTeams => Set<TournamentTeam>();
 
+    public DbSet<Sponsor> Sponsors => Set<Sponsor>();
+
+    public DbSet<TournamentSponsor> TournamentSponsors => Set<TournamentSponsor>();
+
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
 
     {
@@ -196,6 +201,57 @@ public class LeagueDbContext : DbContext
             entity.Property(r => r.UpdatedAt)
 
     .IsRequired(false);
+
+        });
+
+        // -- sponsor configuration --
+        modelBuilder.Entity<TournamentSponsor>(entity =>
+        {
+            entity.HasKey(ts => ts.Id);
+
+            entity.HasOne(ts => ts.Tournament)
+                .WithMany(t => t.TournamentSponsors)
+                .HasForeignKey(ts => ts.TournamentId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(ts => ts.Sponsor)
+                .WithMany(t => t.TournamentSponsors)
+                .HasForeignKey(ts => ts.SponsorId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.Property(p => p.ContractAmount)
+                .IsRequired();
+
+            entity.Property(p => p.JoinedAt)
+                .IsRequired();
+
+        });
+
+        // -- sponsor configuration --
+        modelBuilder.Entity<Sponsor>(entity =>
+        {
+            entity.HasKey(p => p.Id);
+
+            entity.HasIndex(p => p.Name)
+            .IsUnique();
+
+            entity.Property(p => p.ContactEmail)
+            .IsRequired();
+
+            entity.Property(p => p.Phone)
+            .IsRequired(false);
+
+            entity.Property(p => p.WebsiteUrl)
+            .IsRequired(false);
+
+            entity.Property(p => p.Category)
+            .IsRequired();
+
+            entity.Property(r => r.CreatedAt)
+            .IsRequired();
+
+            entity.Property(r => r.UpdatedAt)
+            .IsRequired(false);
 
         });
 

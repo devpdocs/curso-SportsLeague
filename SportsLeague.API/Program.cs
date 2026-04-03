@@ -27,6 +27,8 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 
 builder.Services.AddScoped<ITeamRepository, TeamRepository>();
 
+builder.Services.AddScoped<ISponsorRepository, SponsorRepository>();
+
 builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
 
 builder.Services.AddScoped<IRefereeRepository, RefereeRepository>(); 
@@ -42,6 +44,8 @@ builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
 
 // ── Services ──
 builder.Services.AddScoped<ITeamService, TeamService>();
+
+builder.Services.AddScoped<ISponsorService, SponsorService>();
 
 builder.Services.AddScoped<IPlayerService, PlayerService>();
 
