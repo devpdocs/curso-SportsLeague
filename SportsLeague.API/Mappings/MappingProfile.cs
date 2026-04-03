@@ -34,6 +34,22 @@ public class MappingProfile : Profile
 
         opt => opt.MapFrom(src => src.Team.Name));
 
+        CreateMap<RefereeRequestDTO, Referee>();
+
+        CreateMap<Referee, RefereeResponseDTO>();
+
+        CreateMap<TournamentRequestDTO, Tournament>();
+
+        CreateMap<Tournament, TournamentResponseDTO>()
+
+        .ForMember(
+
+        dest => dest.TeamsCount,
+
+        opt => opt.MapFrom(src =>
+
+        src.TournamentTeams != null ? src.TournamentTeams.Count : 0));
+
     }
 
 }
